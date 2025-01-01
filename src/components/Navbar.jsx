@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
-import { Moon, Sun } from "lucide-react";
+import { ChevronDown, Moon, Sun } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
   const { user } = useAuth();
   const { theme, setTheme } = useTheme();
+  const dropdownRef = useRef(null);
+  const [isDropDownOpen, setDropDownOpen] = useState(false);
 
   if (!user?.isAuthenticated) {
     return null;
@@ -14,6 +17,19 @@ export default function Navbar() {
   const handleToggle = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+
+  const closeDropdown = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setDropDownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeDropdown);
+    return () => {
+      document.removeEventListener("mousedown", closeDropdown);
+    };
+  }, []);
 
   return (
     <nav className="bg-slate-900">
@@ -42,11 +58,37 @@ export default function Navbar() {
               </span>
             )}
           </button>
-          <div>
-            <Link to="/profile" className="text-white font-bold text-xl">
-              Administrator
-            </Link>
-          </div>
+          {user?.isAuthenticated && (
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setDropDownOpen(!isDropDownOpen)}
+                className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              >
+                <span className="text-white font-bold text-xl">{user.user?.username}</span>
+                <ChevronDown className="w-4 h-4 text-white" />
+              </button>
+
+              {isDropDownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-10">
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onClick={() => setDropDownOpen(false)}
+                  >
+                    Edit Profile
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setDropDownOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </nav>
