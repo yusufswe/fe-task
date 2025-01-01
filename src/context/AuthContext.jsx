@@ -18,7 +18,12 @@ export function AuthProvider({ children }) {
     }
     return false;
   };
-  return <AuthContext.Provider value={{ user, login }}>{children}</AuthContext.Provider>;
+
+  const logout = () => {
+    setUser({ isAuthenticated: false, user: null });
+  };
+
+  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => {
