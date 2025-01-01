@@ -22,9 +22,9 @@ export default function Login() {
   };
 
   return (
-    <main className="flex justify-center items-center h-screen">
+    <main className="flex justify-center items-center h-screen dark:bg-white">
       <form className="w-[300px] space-y-4" onSubmit={handleLogin}>
-        <h1 className="text-3xl font-bold text-center">Login</h1>
+        <h1 className="text-3xl font-bold text-center dark:text-black">Login</h1>
 
         <input
           type="text"
@@ -32,7 +32,7 @@ export default function Login() {
           required
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="border-2 w-full block p-3 rounded-lg"
+          className="border-2 w-full block p-3 rounded-lg dark:text-black"
           placeholder="Username"
         />
         <input
@@ -40,12 +40,12 @@ export default function Login() {
           name="password"
           required
           onChange={(e) => setPassword(e.target.value)}
-          className="border-2 w-full block p-3 rounded-lg"
+          className="border-2 w-full block p-3 rounded-lg dark:text-black"
           placeholder="Password"
         />
         {error && <div className="text-red-500 text-sm text-center">{error}</div>}
 
-        <button className="w-full p-2 text-white rounded bg-indigo-500">Submit</button>
+        <button className="w-full p-2 text-white rounded bg-slate-900">Submit</button>
       </form>
     </main>
   );
