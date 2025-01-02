@@ -6,3 +6,12 @@ export const getUserAuth = () => {
 export const setUserAuth = (user) => {
   localStorage.setItem("user", JSON.stringify(user));
 };
+
+export const getStoredItems = () => {
+  const items = localStorage.getItem("items");
+  return items ? JSON.parse(items) : [];
+};
+
+export const setStoredItems = (items) => {
+  localStorage.setItem("items", JSON.stringify(items));
+};

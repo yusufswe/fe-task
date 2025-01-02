@@ -30,9 +30,9 @@ export default function Navbar() {
   return (
     user?.isAuthenticated && (
       <nav className="bg-slate-900">
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between px-12 py-6 sm:px-6">
           <div>
-            <Link to="/" className="font-bold text-white text-3xl">
+            <Link to="/" className="font-bold text-white text-2xl">
               Dashboard
             </Link>
           </div>
@@ -61,7 +61,7 @@ export default function Navbar() {
                   onClick={() => setDropDownOpen(!isDropDownOpen)}
                   className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
-                  <span className="text-white font-bold text-xl">{user.user?.username}</span>
+                  <span className="text-white font-bold text-lg">{user.user?.username}</span>
                   <ChevronDown className="w-4 h-4 text-white" />
                 </button>
 
