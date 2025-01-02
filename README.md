@@ -1,4 +1,4 @@
-## Masuk dengan
+## Masuk dengan kredensial berikut
 
 | Username             | Password  |
 |----------------------|-----------|
