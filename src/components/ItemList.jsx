@@ -14,9 +14,11 @@ export const ItemList = ({
   onShowForm,
 }) => {
   return (
-    <div className="max-w-7xl mx-auto mt-10 text-white rounded-lg sm:px-6">
-      <div className="flex justify-between items-center mb-9">
-        <h2 className="font-bold text-2xl text-slate-800 dark:text-white">Data Karyawan</h2>
+    <div className="max-w-7xl mx-auto mt-10 px-4 text-white rounded-lg sm:px-6">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-9">
+        <h2 className="font-bold text-2xl text-slate-800 dark:text-white mb-4 sm:mb-0">
+          Data Karyawan
+        </h2>
         <div className="flex items-center space-x-2">
           <button
             onClick={() => onShowForm(true)}
@@ -42,8 +44,8 @@ export const ItemList = ({
         <ul>
           {items.map((item) => (
             <li key={item.id} className="p-4">
-              <div className="flex justify-between">
-                <div>
+              <div className="flex flex-col sm:flex-row justify-between">
+                <div className="mb-4 sm:mb-0">
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm mt-1">{item.description}</p>
                 </div>
