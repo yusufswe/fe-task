@@ -14,7 +14,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-4 py-2 border rounded-md  border-slate-800 text-slate-800  dark:text-white dark:border`}
+          className={`px-4 py-2 border rounded-md  border-slate-800 text-slate-800  dark:text-white dark:border-white`}
         >
           {page}
         </button>
